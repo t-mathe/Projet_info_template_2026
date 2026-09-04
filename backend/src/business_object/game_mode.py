@@ -3,18 +3,18 @@ from datetime import datetime
 from secrets import choice
 from typing import Literal
 
-from src.business_object.game import Game, Game_mode_enum
-from src.business_object.player import Player
+from business_object.game import Game, Game_mode_enum
+from business_object.player import Player
 
 
 class GameMode(ABC):
     @abstractmethod
-    def play(p1: Player, p2: Player) -> Game:
+    def play(self, p1: Player, p2: Player) -> Game:
         pass
 
 
 class DiceMode(GameMode):
-    def play(p1: Player, p2: Player) -> Game:
+    def play(self, p1: Player, p2: Player) -> Game:
         d1 = choice(range(1, 7))
         d2 = choice(range(1, 7))
         if d1 > d2:
@@ -23,11 +23,13 @@ class DiceMode(GameMode):
             winner = p2
         else:
             winner = None
-        return Game(p1, p2, Game_mode_enum.DICE, winner, "", datetime.now())
+        desc = f"{p1.username}:{d1} - {p2.username}:{d2} : {winner.username} won."
+        return Game(p1, p2, Game_mode_enum.DICE, winner, desc, datetime.now())
 
 
 class CoinFlipMode(GameMode):
-    def play(p1: Player, p2: Player, choise: Literal["heads" | "tails"]) -> Game:
+    def play(self, p1: Player, p2: Player, side: Literal["heads", "tails"]) -> Game:
         result = choice(["heads", "tails"])
-        winner = p1 if result == choice else p2
-        return Game(p1, p2, Game_mode_enum.DICE, winner, "", datetime.now())
+        winner = p1 if result == side else p2
+        desc = f"{p1.username} chose {side}, coin said {result}, {winner.username} won."
+        return Game(p1, p2, Game_mode_enum.DICE, winner, desc, datetime.now())

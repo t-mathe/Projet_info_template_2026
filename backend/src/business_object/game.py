@@ -32,5 +32,5 @@ class Game:
         desc1 = (
             f"{self.game_mode.value} between {self.player1.username} and {self.player2.username}."
         )
-        desc2 = f"{self.winner.id_player}" if self.winner is not None else ""
+        desc2 = f"{self.winner.username}" if self.winner is not None else ""
         return desc1 + desc2
