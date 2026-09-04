@@ -1,0 +1,63 @@
+# DJU localisé 
+## entrée: 
+		localisation:
+			latitude: float
+			longitude: float
+			altitude: float (optionnel)
+		seuils:
+			seuil_chauffage: float     | au moins une valeur non nulle
+			seuil_climatisation: float |
+		période	
+			debut: date
+			fin: date
+		granularité temporelle 
+			exemple annuel, mensuel ... A définir
+		nombre de stations : entier  >>> doit être inférieur à 5
+		
+## sortie:
+		liste de DJU_agregé:
+			libele: str
+			DJU_chauffage: float
+			DJU_climatisation: float
+			
+	
+## Etapes
+	calcule température moyenne
+		input
+			localisation
+			période
+			nombre de stations
+		output
+			liste relevé:
+				date : date
+				température_moyenne : float
+	calcule DJU
+		input
+			seuils
+			liste relevé
+		output
+			liste DJU_detail
+				date : date
+				DJU_chauffage: float
+				DJU_climatisation: float
+	agrege DJU
+		input
+			liste DJU
+			granularité temporelle
+		output
+			liste de DJU_agregé:
+				libele: str
+				DJU_chauffage: float
+				DJU_climatisation: float
+				
+
+# détail calcule température moyenne
+	input
+		localisation
+		période
+		nombre de stations
+	output
+		liste relevé:
+			date: date
+			température_moyenne: float
+				
