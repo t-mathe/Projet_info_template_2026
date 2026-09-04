@@ -60,4 +60,18 @@
 		liste relevé:
 			date: date
 			température_moyenne: float
-				
+	étapes
+		extrait_releves_proches_correction_altitude
+			input
+				localisation
+				période
+				nombre de stations
+			output
+				listes de relevés
+					localisation
+					liste
+						date: date
+						température_moyenne: floate
+		moyenne_distance_inverse
+			input
+				localisation
