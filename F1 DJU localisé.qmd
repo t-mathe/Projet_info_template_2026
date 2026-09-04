@@ -1,6 +1,6 @@
 # DJU localisé 
 ## entrée: 
-		localisation:
+		_localisation_ :
 			latitude: float
 			longitude: float
 			altitude: float (optionnel)
